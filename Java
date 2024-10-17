@@ -1,0 +1,42 @@
+// Scroll to section
+function scrollToSection(sectionId) {
+    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Handle Feedback Form
+document.getElementById('experience').addEventListener('change', function() {
+    const experience = this.value;
+    if (experience === 'negative') {
+        document.getElementById('difficultyReason').style.display = 'block';
+    } else {
+        document.getElementById('difficultyReason').style.display = 'none';
+        document.getElementById('weaknessForm').style.display = 'none';
+    }
+});
+
+document.getElementById('difficulty').addEventListener('change', function() {
+    const difficulty = this.value;
+    if (difficulty === 'difficulty') {
+        document.getElementById('weaknessForm').style.display = 'block';
+    } else {
+        document.getElementById('weaknessForm').style.display = 'none';
+    }
+});
+
+// Study Timer
+function startTimer(minutes) {
+    const timerDisplay = document.getElementById('timerDisplay');
+    let time = minutes * 60;
+    
+    const countdown = setInterval(function() {
+        const minutesLeft = Math.floor(time / 60);
+        const secondsLeft = time % 60;
+        timerDisplay.textContent = `${minutesLeft} min ${secondsLeft} sec`;
+        time--;
+
+        if (time < 0) {
+            clearInterval(countdown);
+            timerDisplay.textContent = "Time's up! Great job studying!";
+        }
+    }, 1000);
+}
